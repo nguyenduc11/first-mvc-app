@@ -28,6 +28,18 @@ namespace MyApp.Controllers
             return RedirectToAction("Index");
         }
 
+
+        [HttpGet]
+        public IActionResult Add()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Add(Category category)
+        {
+            CategoriesRepository.AddCategory(category);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
 
