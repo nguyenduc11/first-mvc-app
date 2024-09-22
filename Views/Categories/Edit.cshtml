@@ -1,0 +1,43 @@
+@using MyApp.Models
+@section title {
+    <h3>Edit Category</h3>
+    <br>
+}
+@model Category
+<h3>Category: @Model.CategoryId </h3>
+
+<form asp-asp-controller="categories"
+    asp-action="edit"
+    method="post"
+>
+    <p>form</p>
+    <input type="hidden"
+        asp-for="CategoryId"
+    >
+    <div class="row mb-3">
+        <div class="col-2">
+            <label asp-for="Name" class="col-form-label">Name</label>
+        </div>
+        <div class="col-6">
+            <input 
+            class="form-control"
+            type="text"
+            asp-for="Name">
+        </div>
+    </div>
+     <div class="row mb-3">
+        <div class="col-2">
+            <label asp-for="Description" class="col-form-label">Description</label>
+        </div>
+        <div class="col-6">
+            <input 
+            class="form-control"
+            type="text"
+            asp-for="Description">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <input type="submit" class="btn btn-primary"
+        value="Save">
+    </div>
+</form>
