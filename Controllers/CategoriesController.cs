@@ -40,6 +40,13 @@ namespace MyApp.Controllers
             CategoriesRepository.AddCategory(category);
             return RedirectToAction(nameof(Index));
         }
+
+
+        public IActionResult Delete([FromRoute] int id)
+        {
+            CategoriesRepository.DeleteCategory(id);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
 
