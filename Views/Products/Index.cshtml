@@ -1,0 +1,32 @@
+@model List<Product>
+
+@section title {
+    <h3>Products</h3>
+}
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(m => product.Name)</td>
+                    <td>@Html.DisplayFor(m => product.Price, "{0:c}")</td>
+                    <td>@Html.DisplayFor(m => product.Quantity)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No products available.</p>
+}
