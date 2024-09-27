@@ -14,6 +14,7 @@ namespace MyApp.Controllers
         public IActionResult Edit([FromRoute] int id)
         {
             // var category = new Category { CategoryId = id };
+            ViewBag.Action = "edit";
             var category = CategoriesRepository.GetCategoryById(id);
             return View(category);
         }
@@ -32,6 +33,7 @@ namespace MyApp.Controllers
         [HttpGet]
         public IActionResult Add()
         {
+            ViewBag.Action = "add";
             return View();
         }
         [HttpPost]
