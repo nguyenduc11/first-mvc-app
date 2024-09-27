@@ -6,7 +6,7 @@ namespace MyApp.Controllers
     {
         public IActionResult Index()
         {
-            var products = ProductsRepository.GetProducts();
+            var products = ProductsRepository.GetProducts(loadCaegory: true);
             return View(products);
         }
     }
