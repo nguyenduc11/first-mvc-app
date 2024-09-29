@@ -23,6 +23,10 @@
                     <td>@Html.DisplayFor(m => product.Name)</td>
                     <td>@Html.DisplayFor(m => product.Price, "{0:c}")</td>
                     <td>@Html.DisplayFor(m => product.Quantity)</td>
+                    <td>
+                        <a class="btn btn-link" asp-controller="products" asp-action="edit"
+                            asp-route-itemid="@product.ProductId">Edit</a>
+                    </td>
                 </tr>
             }
         </tbody>

@@ -13,6 +13,7 @@ namespace MyApp.Controllers
 
         public IActionResult Add()
         {
+            ViewBag.Action = "add";
             var productViewModel = new ProductViewModel
             {
                 Categories = CategoriesRepository.GetCategories()
@@ -23,6 +24,7 @@ namespace MyApp.Controllers
         [HttpPost]
         public IActionResult Add(ProductViewModel productViewModel)
         {
+            ViewBag.Action = "add";
             // Check if the model state is valid
             if (ModelState.IsValid)
             {
@@ -40,5 +42,22 @@ namespace MyApp.Controllers
             return View(productViewModel);
         }
 
+
+        public IActionResult Edit(int id)
+        {
+            var product = ProductsRepository.GetProductById(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.Action = "edit";
+            var productViewModel = new ProductViewModel
+            {
+                Product = product,
+                Categories = CategoriesRepository.GetCategories()
+            };
+            return View(productViewModel);
+        }
     }
 }
