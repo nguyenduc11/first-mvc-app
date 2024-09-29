@@ -4,31 +4,52 @@
     <h3>Add Product</h3>
 }
 
-<form method="post"
-    asp-controller="products"
-    asp-action="add"
->
+<form method="post" asp-controller="products" asp-action="add">
+    <div class="text-danger" asp-validation-summary="All"></div>
+
+    @* Category Section *@
     <div class="row mb-3">
         <div class="col-2">
-            <label 
-            asp-for="Product.Name"
-            class="col-form-label">Name</label>
+            <label asp-for="Product.CategoryId" class="col-form-label">Category</label>
         </div>
         <div class="col-6">
-            <input type="text" class="form-control"
-            asp-for="Product.Name">
+            <select asp-for="Product.CategoryId" class="form-control">
+                <option value="">Please Select</option>
+                @foreach (var cat in Model.Categories)
+                {
+                    <option value="@cat.CategoryId">@cat.Name</option>
+                }
+            </select>
+        </div>
+        <div class="col">
+            <span class="text-danger" asp-validation-for="Product.CategoryId"></span>
         </div>
     </div>
 
-      <div class="row mb-3">
-        <div class="col-2">
-            <label 
-            asp-for="Product.Price"
-            class="col-form-label">Price</label>
+    @* Input Section *@
+    @foreach (var field in new[] {
+    new { Label = "Name", Property = "Product.Name" },
+    new { Label = "Price", Property = "Product.Price" },
+    new { Label = "Quantity", Property = "Product.Quantity" }
+    })
+    {
+        <div class="row mb-3">
+            <div class="col-2">
+                <label asp-for="@field.Property" class="col-form-label">@field.Label</label>
+            </div>
+            <div class="col-6">
+                <input type="text" class="form-control" asp-for="@field.Property" />
+            </div>
+            <div class="col">
+                <span class="text-danger" asp-validation-for="@field.Property"></span>
+            </div>
         </div>
-        <div class="col-6">
-            <input type="text" class="form-control"
-            asp-for="Product.Price">
+    }
+
+    @* Submit Section *@
+    <div class="row mb-3">
+        <div class="col-2">
+            <input type="submit" class="btn btn-primary" value="Save" />
         </div>
     </div>
 </form>
